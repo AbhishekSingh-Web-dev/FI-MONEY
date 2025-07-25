@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Inventory Management API",
+    "description": "RESTful API for managing users and product inventory, secured with JWT.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter your JWT in the format: Bearer <token>"
+    }
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": ["Authentication"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User credentials for registration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registration successful",
+            "schema": {
+              "$ref": "#/definitions/AuthResponse"
+            }
+          },
+          "409": {
+            "description": "User already exists"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login an existing user",
+        "tags": ["Authentication"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User credentials for login",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "$ref": "#/definitions/AuthResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid Credentials"
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "summary": "Add a new product",
+        "tags": ["Products"],
+        "security": [{"Bearer": []}],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The product to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of all products",
+        "tags": ["Products"],
+        "security": [{"Bearer": []}],
+        "produces": ["application/json"],
+        "parameters": [
+            {
+                "name": "page",
+                "in": "query",
+                "description": "Page number for pagination",
+                "type": "integer"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "description": "Number of items per page",
+                "type": "integer"
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/products/{id}/quantity": {
+      "put": {
+        "summary": "Update a product's quantity",
+        "tags": ["Products"],
+        "security": [{"Bearer": []}],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the product to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The new quantity",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "quantity": {
+                  "type": "integer"
+                }
+              },
+              "required": ["quantity"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserCredentials": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "testuser"
+        },
+        "password": {
+          "type": "string",
+          "example": "password123"
+        }
+      }
+    },
+    "AuthResponse": {
+        "type": "object",
+        "properties": {
+            "access_token": {
+                "type": "string",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+        }
+    },
+    "ProductInput": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "example": "Smartwatch" },
+        "type": { "type": "string", "example": "Electronics" },
+        "sku": { "type": "string", "example": "SW-001" },
+        "image_url": { "type": "string", "example": "http://example.com/watch.jpg" },
+        "description": { "type": "string", "example": "A new smartwatch." },
+        "quantity": { "type": "integer", "example": 50 },
+        "price": { "type": "number", "example": 250 }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "example": "60d0fe4f5311236168a109ca" },
+        "name": { "type": "string", "example": "Smartwatch" },
+        "type": { "type": "string", "example": "Electronics" },
+        "sku": { "type": "string", "example": "SW-001" },
+        "image_url": { "type": "string", "example": "http://example.com/watch.jpg" },
+        "description": { "type": "string", "example": "A new smartwatch." },
+        "quantity": { "type": "integer", "example": 50 },
+        "price": { "type": "number", "example": 250 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}
