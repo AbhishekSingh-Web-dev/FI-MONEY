@@ -16,7 +16,12 @@ connectDB();
 
 const app = express();
 
-app.use(cors())
+const corsOptions = {
+  origin: 'https://fimoneyfrontend.vercel.app', 
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json())
 
 app.get('/', (req, res) => {
