@@ -2,7 +2,7 @@ Setup Instructions
 
 The project is divided into two main folders: backend and frontend. You will need to run two separate terminals to start both the server and the client application.
 
-1-- Backend Setup
+1--> Backend Setup
 First, let's get the backend server running.
 
 Step 1: Navigate to the Backend Directory
@@ -20,13 +20,13 @@ Step 3: Create Environment File
 Create a new file named .env in the root of the backend folder. This file will store your secret keys and database connection string. Copy the following into the file and replace the placeholder values with your actual credentials.
 
 
-# The port your server will run on
+--> The port your server will run on
 PORT=5000
 
-# Your MongoDB connection string
+--> Your MongoDB connection string
 MONGO_URI=mongodb+srv://<user>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority
 
-# A long, random, secret string for signing JWTs
+--> A long, random, secret string for signing JWTs
 JWT_SECRET=your_super_secret_and_long_jwt_key
 
 
@@ -38,7 +38,7 @@ npm run dev
 
 
 
-2-- Frontend Setup
+2--> Frontend Setup
 
 Step 1: Navigate to the Frontend Directory
 Open a new terminal window and navigate into the frontend folder.
