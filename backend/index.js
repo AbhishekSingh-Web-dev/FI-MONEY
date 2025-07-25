@@ -6,7 +6,7 @@ import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
 
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json' assert { type: 'json' };
+import swaggerDocument from './swagger.json' with { type: 'json' };
 
 
 dotenv.config()
