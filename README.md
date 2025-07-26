@@ -6,6 +6,7 @@ Step 1: Clone the Repository
 First, clone the repository from GitHub to your local machine.
 
 git clone https://github.com/AbhishekSingh-Web-dev/FI-MONEY.git
+
 cd FI-MONEY
 
 1--> Backend Setup
