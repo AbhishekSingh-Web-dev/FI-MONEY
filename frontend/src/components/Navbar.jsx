@@ -1,9 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleLogout = () => {
+    logout(); // 1. Call the logout function from your context to clear the token
+    navigate('/login'); // 2. Redirect the user to the login page
+  };
 
   return (
     <nav className="bg-gray-800 text-white shadow-lg">
@@ -19,7 +25,7 @@ export default function Navbar() {
             <>
               <Link to="/dashboard" className="px-4 py-2 hover:bg-gray-700 rounded-md transition-colors duration-300">Dashboard</Link>
               <button 
-                onClick={logout} 
+                onClick={handleLogout} // The button now calls the new handleLogout function
                 className="ml-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition-transform duration-300 ease-in-out transform hover:scale-105"
               >
                 Logout
