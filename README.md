@@ -2,6 +2,12 @@ Setup Instructions
 
 The project is divided into two main folders: backend and frontend. You will need to run two separate terminals to start both the server and the client application.
 
+Step 1: Clone the Repository
+First, clone the repository from GitHub to your local machine.
+
+git clone https://github.com/AbhishekSingh-Web-dev/FI-MONEY.git
+cd FI-MONEY
+
 1--> Backend Setup
 First, let's get the backend server running.
 
