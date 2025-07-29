@@ -1,4 +1,5 @@
 FI-MONEY Inventory Management System
+
 A full-stack inventory management application built with the MERN stack and containerized with Docker.
 
 This project provides a complete solution for managing products, including user authentication and a clean, responsive user interface.
