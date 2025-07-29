@@ -14,12 +14,12 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-800 text-white shadow-lg">
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
+        {/* <Link to="/" className="flex items-center"> */}
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0118 18c.09.09.16.19.27.28.11.1.22.19.34.28.11.1.22.19.34.28a.5.5 0 010 .707.5.5 0 01-.707 0 8.003 8.003 0 01-2.22-2.22zM9 10s-2 2-5 2 5-2 5-2z" />
           </svg>
           <h1 className="text-2xl font-bold tracking-wider">Inventory</h1>
-        </Link>
+        {/* </Link> */}
         <div className="flex items-center">
           {isAuthenticated ? (
             <>
