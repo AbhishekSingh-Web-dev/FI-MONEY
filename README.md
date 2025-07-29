@@ -50,7 +50,7 @@ JWT_SECRET=your_super_secret_and_long_jwt_key
 
 ### 4. Build and Run!
 ```bash
-docker-compose -f docker-compose.prod.yml up --build
+docker-compose -f docker-compose.yml up --build
 ```
 
 Once the build is complete, the application will be available at http://localhost:3000.
@@ -58,7 +58,7 @@ Once the build is complete, the application will be available at http://localhos
 To stop the application:
 ```bash
 Ctrl + C
-docker-compose -f docker-compose.prod.yml down
+docker-compose -f docker-compose.yml down
 ```
 
 ---
