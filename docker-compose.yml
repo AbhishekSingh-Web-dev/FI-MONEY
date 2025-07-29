@@ -5,27 +5,27 @@ services:
   backend:
     build:
       context: ./backend
-      # CORRECTED: Pointing to the correct Dockerfile name
+  
       dockerfile: Dockerfile
     container_name: fi_backend_prod
     ports:
       - "5000:5000"
     env_file:
-      - ./.env # The interviewer will create this file
+      - ./.env 
 
   # Frontend Service Configuration for Production
   frontend:
     build:
-      # CORRECTED: The context path now points to your 'frontend' folder.
+      
       context: ./frontend
-      # CORRECTED: Pointing to the correct Dockerfile name
+      
       dockerfile: Dockerfile
       args:
-        # This URL is correct for the browser to access the backend.
+       
         VITE_API_BASE_URL: http://localhost:5000/api
     container_name: fi_frontend_prod
     ports:
       - "3000:80" # Expose the app on port 3000
-    # Ensures the backend starts before the frontend.
+    
     depends_on:
       - backend
